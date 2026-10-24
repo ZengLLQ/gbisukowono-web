@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { IconShield, IconInstagram, IconWhatsApp } from "@/components/ui/Icons";
 import { securityNotice } from "@/data/giving";
-import { duration, ease } from "@/lib/motion";
+import { ease } from "@/lib/motion";
 
 export function SecurityNoticeBox() {
   return (

@@ -5,4 +5,5 @@ export * from "./ImageReveal";
 export * from "./Parallax";
 export * from "./Magnetic";
 export * from "./SmoothScroll";
+export * from "./CountUp";
 export * from "./useIsDesktop";

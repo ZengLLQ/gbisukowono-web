@@ -32,8 +32,6 @@ export function NextServiceBadge() {
       // Selasa: 18:00 (1080 min)
       // Jumat: 18:30 (1110 min)
       // Minggu: 18:00 (1080 min)
-      let targetDay = 0;
-      let targetTimeInMin = 1080;
       let serviceName = "Ibadah Raya Minggu";
       let dayName = "Minggu ini";
       let timeStr = "18.00 WIB";
@@ -41,67 +39,49 @@ export function NextServiceBadge() {
       if (day === 0) {
         // Sunday
         if (timeInMinutes < 1080) {
-          targetDay = 0;
-          targetTimeInMin = 1080;
           serviceName = "Ibadah Raya Minggu";
           dayName = "Hari ini";
           timeStr = "18.00 WIB";
         } else {
           // next is Tuesday
-          targetDay = 2;
-          targetTimeInMin = 1080;
           serviceName = "Persekutuan Doa";
           dayName = "Selasa";
           timeStr = "18.00 WIB";
         }
       } else if (day === 1) {
         // Monday -> Tuesday
-        targetDay = 2;
-        targetTimeInMin = 1080;
         serviceName = "Persekutuan Doa";
         dayName = "Selasa besok";
         timeStr = "18.00 WIB";
       } else if (day === 2) {
         // Tuesday
         if (timeInMinutes < 1080) {
-          targetDay = 2;
-          targetTimeInMin = 1080;
           serviceName = "Persekutuan Doa";
           dayName = "Hari ini";
           timeStr = "18.00 WIB";
         } else {
-          targetDay = 5;
-          targetTimeInMin = 1110;
           serviceName = "Worship Night";
           dayName = "Jumat";
           timeStr = "18.30 WIB";
         }
       } else if (day === 3 || day === 4) {
         // Wed or Thu -> Friday
-        targetDay = 5;
-        targetTimeInMin = 1110;
         serviceName = "Worship Night";
         dayName = "Jumat ini";
         timeStr = "18.30 WIB";
       } else if (day === 5) {
         // Friday
         if (timeInMinutes < 1110) {
-          targetDay = 5;
-          targetTimeInMin = 1110;
           serviceName = "Worship Night";
           dayName = "Hari ini";
           timeStr = "18.30 WIB";
         } else {
-          targetDay = 0;
-          targetTimeInMin = 1080;
           serviceName = "Ibadah Raya Minggu";
           dayName = "Minggu ini";
           timeStr = "18.00 WIB";
         }
       } else {
         // Saturday -> Sunday
-        targetDay = 0;
-        targetTimeInMin = 1080;
         serviceName = "Ibadah Raya Minggu";
         dayName = "Minggu besok";
         timeStr = "18.00 WIB";

@@ -3,7 +3,6 @@ import { Archivo, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { SkipToContent } from "@/components/layout/SkipToContent";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { motionCssVariables } from "@/lib/motion";

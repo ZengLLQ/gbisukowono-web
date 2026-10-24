@@ -12,9 +12,7 @@ import {
   IconClock,
   IconMapPin,
   IconWhatsApp,
-  IconCalendar,
   IconCheck,
-  IconArrowRight,
 } from "@/components/ui/Icons";
 import { weeklySchedule, churchHolyDays } from "@/data/schedule";
 import { churchContact } from "@/data/contact";

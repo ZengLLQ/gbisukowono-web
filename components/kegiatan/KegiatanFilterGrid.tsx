@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { announcements, Announcement } from "@/data/announcements";
+import { announcements } from "@/data/announcements";
 import { IconCalendar, IconArrowRight } from "@/components/ui/Icons";
 import { duration, ease } from "@/lib/motion";
 

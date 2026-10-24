@@ -6,7 +6,6 @@ import Link from "next/link";
 import { IconArrowRight, IconWhatsApp, IconClock } from "@/components/ui/Icons";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { Magnetic } from "@/components/motion/Magnetic";
-import { Reveal } from "@/components/motion/Reveal";
 
 export function Hero() {
   return (

@@ -1,14 +1,39 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 import { duration, distance, ease, stagger, viewport } from "@/lib/motion";
+
+type AllowedTag = "div" | "ul" | "ol" | "li" | "section" | "article" | "nav";
 
 interface RevealStaggerProps {
   children: ReactNode;
   staggerDelay?: number;
   className?: string;
-  as?: React.ElementType;
+  as?: AllowedTag;
+}
+
+function MotionStaggerContainer({
+  as = "div",
+  children,
+  ...props
+}: { as?: AllowedTag; children: ReactNode } & HTMLMotionProps<"div">) {
+  switch (as) {
+    case "ul":
+      return <motion.ul {...(props as HTMLMotionProps<"ul">)}>{children}</motion.ul>;
+    case "ol":
+      return <motion.ol {...(props as HTMLMotionProps<"ol">)}>{children}</motion.ol>;
+    case "li":
+      return <motion.li {...(props as HTMLMotionProps<"li">)}>{children}</motion.li>;
+    case "section":
+      return <motion.section {...(props as HTMLMotionProps<"section">)}>{children}</motion.section>;
+    case "article":
+      return <motion.article {...(props as HTMLMotionProps<"article">)}>{children}</motion.article>;
+    case "nav":
+      return <motion.nav {...(props as HTMLMotionProps<"nav">)}>{children}</motion.nav>;
+    default:
+      return <motion.div {...props}>{children}</motion.div>;
+  }
 }
 
 export function RevealStagger({
@@ -18,7 +43,6 @@ export function RevealStagger({
   as = "div",
 }: RevealStaggerProps) {
   const shouldReduceMotion = useReducedMotion();
-  const Component = motion.create(as as any);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -31,7 +55,8 @@ export function RevealStagger({
   };
 
   return (
-    <Component
+    <MotionStaggerContainer
+      as={as}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -39,7 +64,7 @@ export function RevealStagger({
       className={className}
     >
       {children}
-    </Component>
+    </MotionStaggerContainer>
   );
 }
 
@@ -50,17 +75,16 @@ export function RevealStaggerItem({
 }: {
   children: ReactNode;
   className?: string;
-  as?: React.ElementType;
+  as?: AllowedTag;
 }) {
   const shouldReduceMotion = useReducedMotion();
-  const Component = motion.create(as as any);
 
   const itemVariants = shouldReduceMotion
     ? {
         hidden: { opacity: 0 },
         visible: {
           opacity: 1,
-          transition: { duration: duration.reduced, ease: "linear" },
+          transition: { duration: duration.reduced, ease: "linear" as const },
         },
       }
     : {
@@ -73,8 +97,8 @@ export function RevealStaggerItem({
       };
 
   return (
-    <Component variants={itemVariants} className={className}>
+    <MotionStaggerContainer as={as} variants={itemVariants} className={className}>
       {children}
-    </Component>
+    </MotionStaggerContainer>
   );
 }

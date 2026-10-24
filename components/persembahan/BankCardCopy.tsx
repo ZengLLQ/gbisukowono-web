@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { IconCopy, IconCheck, IconShield } from "@/components/ui/Icons";
 import { bankDetails } from "@/data/giving";
@@ -9,6 +9,13 @@ import { duration, ease, scale } from "@/lib/motion";
 export function BankCardCopy() {
   const [copied, setCopied] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const handleCopy = async () => {
     const textToCopy = bankDetails.accountNumber;
@@ -18,14 +25,15 @@ export function BankCardCopy() {
         await navigator.clipboard.writeText(textToCopy);
         setToastMessage("Nomor rekening berhasil disalin ke clipboard!");
         setCopied(true);
-      } catch (err) {
+      } catch {
         fallbackCopy(textToCopy);
       }
     } else {
       fallbackCopy(textToCopy);
     }
 
-    setTimeout(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
       setCopied(false);
       setToastMessage("");
     }, 2000);

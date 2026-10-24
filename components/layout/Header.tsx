@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
@@ -21,8 +21,15 @@ export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  const lastScrollY = useRef(0);
+
+  // Close mobile menu on route change during render
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setMobileMenuOpen(false);
+  }
 
   // Monitor scroll for solid bg and hide-on-scroll-down
   useEffect(() => {
@@ -30,25 +37,21 @@ export function Header() {
       const currentScrollY = window.scrollY;
 
       // Solid background after 80px
-      if (currentScrollY > 80) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(currentScrollY > 80);
 
       // Hide on scroll down, show on scroll up (after 120px)
-      if (currentScrollY > 120 && currentScrollY > lastScrollY && !mobileMenuOpen) {
+      if (currentScrollY > 120 && currentScrollY > lastScrollY.current && !mobileMenuOpen) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -61,11 +64,6 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
 
   return (
     <>

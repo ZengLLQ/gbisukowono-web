@@ -64,8 +64,8 @@ export function TentangNav() {
               {item.label}
               {isActive && (
                 <motion.div
-                  layoutId="activeTentangTab"
-                  className="absolute inset-0 bg-white/15 rounded-full -z-10"
+                  layoutId="activeTentangUnderline"
+                  className="absolute bottom-0 left-2 right-2 h-0.5 bg-accent rounded-full"
                   transition={{ duration: 0.25, ease: ease.ui }}
                 />
               )}

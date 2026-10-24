@@ -25,7 +25,7 @@ export function WeeklyTimeline() {
               <div
                 className={`h-full rounded-2xl p-4 sm:p-5 border transition-all flex flex-col justify-between ${
                   item.hasService
-                    ? "bg-white border-accent/50 shadow-md ring-1 ring-accent/20"
+                    ? "bg-white border-accent/50 shadow-md ring-1 ring-accent/20 service-day-pulse"
                     : "bg-sand/60 border-line/70 opacity-60"
                 }`}
               >

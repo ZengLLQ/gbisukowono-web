@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { churchContact } from "@/data/contact";
 import { ClosingCtaBand } from "@/components/layout/ClosingCtaBand";
 import { IconWhatsApp, IconArrowRight } from "@/components/ui/Icons";
 

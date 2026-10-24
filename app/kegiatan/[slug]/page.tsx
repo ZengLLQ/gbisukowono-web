@@ -4,15 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { announcements } from "@/data/announcements";
-import { churchContact } from "@/data/contact";
 import { ClosingCtaBand } from "@/components/layout/ClosingCtaBand";
 import {
   IconCalendar,
   IconMapPin,
   IconWhatsApp,
-  IconArrowRight,
 } from "@/components/ui/Icons";
-import { Reveal } from "@/components/motion/Reveal";
 import { Magnetic } from "@/components/motion/Magnetic";
 
 interface PageProps {

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { IconArrowRight, IconCross } from "@/components/ui/Icons";
+import { IconArrowRight } from "@/components/ui/Icons";
 
 export default function NotFound() {
   return (

@@ -39,6 +39,8 @@ export function ServicesSection() {
         <div className="space-y-24 sm:space-y-32">
           {weeklySchedule.map((service, index) => {
             const isReversed = index % 2 === 1;
+            const imageSlideX = isReversed ? distance.slide : -distance.slide;
+            const textSlideX = isReversed ? -distance.slide : distance.slide;
 
             return (
               <div
@@ -47,9 +49,12 @@ export function ServicesSection() {
                   isReversed ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                {/* Image Column */}
+                {/* Image Column: slides in from opposite side with ImageReveal */}
                 <div className="w-full lg:w-1/2">
-                  <ImageReveal className="relative aspect-[16/10] sm:aspect-[16/9] shadow-2xl">
+                  <ImageReveal
+                    x={imageSlideX}
+                    className="relative aspect-[16/10] sm:aspect-[16/9] shadow-2xl"
+                  >
                     <Image
                       src={service.image}
                       alt={service.name}
@@ -72,9 +77,9 @@ export function ServicesSection() {
                   </ImageReveal>
                 </div>
 
-                {/* Content Column */}
+                {/* Content Column: slides in from opposing side */}
                 <div className="w-full lg:w-1/2 space-y-6">
-                  <Reveal y={distance.slide}>
+                  <Reveal x={textSlideX} y={0}>
                     <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-text">
                       <IconCalendar size={16} />
                       <span>{service.day}</span>

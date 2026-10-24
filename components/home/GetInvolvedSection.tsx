@@ -26,9 +26,9 @@ const involvedSteps = [
     description:
       "Iman bertumbuh ketika kita berakar dalam firman dan hidup saling menguatkan. Hadiri persekutuan Selasa malam dan kelompok pemuda.",
     image: "/images/fellowship-table.webp",
-    linkText: "Info Persekutuan",
-    href: "/jadwal",
-    isExternal: false,
+    linkText: "Hubungi via WhatsApp",
+    href: "https://wa.me/6281217407046?text=Halo%20Sekretariat%20GBI%20Sukowono,%20saya%20ingin%20mengikuti%20persekutuan%20doa%20dan%20bertumbuh%20bersama",
+    isExternal: true,
   },
   {
     id: "hubungi",

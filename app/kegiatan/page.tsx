@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { RevealStagger, RevealStaggerItem } from "@/components/motion/RevealStagger";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { weeklySpeakers } from "@/data/speakers";
-import { IconCalendar, IconInstagram, IconArrowRight } from "@/components/ui/Icons";
+import { IconCalendar, IconInstagram } from "@/components/ui/Icons";
 
 export const metadata: Metadata = {
   title: "Kegiatan & Warta Jemaat – GBI Sukowono, Jember",

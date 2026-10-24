@@ -8,7 +8,6 @@ import { Accordion } from "@/components/ui/Accordion";
 import { ClosingCtaBand } from "@/components/layout/ClosingCtaBand";
 import { Reveal } from "@/components/motion/Reveal";
 import { givingFaqs } from "@/data/faqs";
-import { churchContact } from "@/data/contact";
 import { IconWhatsApp } from "@/components/ui/Icons";
 import { Magnetic } from "@/components/motion/Magnetic";
 

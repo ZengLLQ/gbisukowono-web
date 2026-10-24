@@ -1,30 +1,45 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { IconInstagram, IconClose } from "@/components/ui/Icons";
 import { duration, ease } from "@/lib/motion";
 
 const STORAGE_KEY = "gbi_announcement_dismissed_v1";
 
-export function AnnouncementBar() {
-  const [isVisible, setIsVisible] = useState(false);
+function subscribe(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+  window.addEventListener("storage", callback);
+  window.addEventListener("gbi-announcement-dismiss", callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("gbi-announcement-dismiss", callback);
+  };
+}
 
-  useEffect(() => {
-    // Only show if not dismissed in session
-    const isDismissed = sessionStorage.getItem(STORAGE_KEY);
-    if (!isDismissed) {
-      setIsVisible(true);
-    }
-  }, []);
+function getSnapshot(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return sessionStorage.getItem(STORAGE_KEY) !== "true";
+  } catch {
+    return true;
+  }
+}
+
+function getServerSnapshot(): boolean {
+  return false;
+}
+
+export function AnnouncementBar() {
+  const isVisible = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const handleDismiss = () => {
-    setIsVisible(false);
     try {
       sessionStorage.setItem(STORAGE_KEY, "true");
     } catch {
       // ignore in incognito or restricted storage
     }
+    window.dispatchEvent(new Event("gbi-announcement-dismiss"));
   };
 
   return (

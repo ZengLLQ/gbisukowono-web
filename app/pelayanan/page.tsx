@@ -1,11 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ministries } from "@/data/ministries";
-import { churchContact } from "@/data/contact";
 import { ClosingCtaBand } from "@/components/layout/ClosingCtaBand";
-import { IconWhatsApp, IconArrowRight } from "@/components/ui/Icons";
-import { Reveal } from "@/components/motion/Reveal";
+import { IconWhatsApp } from "@/components/ui/Icons";
 
 export const metadata: Metadata = {
   title: "Pelayanan Jemaat – GBI Sukowono",

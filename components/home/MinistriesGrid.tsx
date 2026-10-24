@@ -76,7 +76,7 @@ export function MinistriesGrid() {
                         href="/kontak"
                         className="inline-flex items-center gap-2 text-xs font-bold text-accent-text group-hover:text-accent-dark transition-colors"
                       >
-                        <span>Bergabung & Melayani</span>
+                        <span>Selengkapnya</span>
                         <IconArrowRight
                           size={14}
                           className="transform group-hover:translate-x-1.5 transition-transform"

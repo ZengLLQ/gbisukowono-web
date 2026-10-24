@@ -11,7 +11,6 @@ import {
   IconWhatsApp,
   IconInstagram,
   IconClock,
-  IconShield,
 } from "@/components/ui/Icons";
 
 export const metadata: Metadata = {

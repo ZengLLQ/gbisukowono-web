@@ -94,6 +94,7 @@ f:/GBI Sukowono Branding/
 │   │   ├── ImageReveal.tsx
 │   │   ├── Parallax.tsx
 │   │   ├── Magnetic.tsx
+│   │   ├── CountUp.tsx
 │   │   ├── SmoothScroll.tsx
 │   │   └── useIsDesktop.ts
 │   └── ui/
@@ -149,6 +150,12 @@ npm run build
 
 # Menjalankan build produksi secara lokal
 npm start
+
+# Menjalankan linting (ESLint 9 murni - 0 errors/warnings)
+npm run lint
+
+# Menjalankan test suite E2E Playwright otomatis (desktop, mobile, reduced motion)
+npm test
 ```
 
 ---
@@ -199,7 +206,8 @@ Seluruh nilai animasi dipusatkan di [`lib/motion.ts`](file:///f:/GBI%20Sukowono%
 4. `<ImageReveal>`: Efek pembuka foto sinematik menggunakan `clip-path: inset(8% round 24px)` ke `inset(0% round 24px)` disertai zoom halus dari 1.08x ke 1.0x.
 5. `<Parallax>`: Efek paralaks lembut (+/- 40px) pada foto hero dan gembala jemaat (hanya aktif di desktop).
 6. `<Magnetic>`: Tarikan halus mengikuti kursor mouse (maks. 6px) pada tombol utama (hanya aktif di desktop).
-7. `<SmoothScroll>`: Pembungkus Lenis untuk scroll desktop yang mulus, dinonaktifkan otomatis di layar sentuh atau mode reduced motion.
+7. `<CountUp>`: Animasi penghitung angka halus berbasis RAF dengan `prefers-reduced-motion` fallback.
+8. `<SmoothScroll>`: Pembungkus Lenis untuk scroll desktop yang mulus, dinonaktifkan otomatis di layar sentuh atau mode reduced motion.
 
 ---
 

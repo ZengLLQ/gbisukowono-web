@@ -1,14 +1,35 @@
 "use client";
 
-import React from "react";
-import { motion, useReducedMotion } from "motion/react";
+import React, { ReactNode } from "react";
+import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 import { duration, ease, stagger, viewport } from "@/lib/motion";
+
+type AllowedTag = "h1" | "h2" | "h3" | "span" | "div";
 
 interface TextRevealProps {
   text: string;
-  as?: "h1" | "h2" | "h3" | "span" | "div";
+  as?: AllowedTag;
   className?: string;
   delay?: number;
+}
+
+function MotionHeadingContainer({
+  as = "h2",
+  children,
+  ...props
+}: { as?: AllowedTag; children: ReactNode } & HTMLMotionProps<"h2">) {
+  switch (as) {
+    case "h1":
+      return <motion.h1 {...(props as HTMLMotionProps<"h1">)}>{children}</motion.h1>;
+    case "h3":
+      return <motion.h3 {...(props as HTMLMotionProps<"h3">)}>{children}</motion.h3>;
+    case "span":
+      return <motion.span {...(props as HTMLMotionProps<"span">)}>{children}</motion.span>;
+    case "div":
+      return <motion.div {...(props as HTMLMotionProps<"div">)}>{children}</motion.div>;
+    default:
+      return <motion.h2 {...props}>{children}</motion.h2>;
+  }
 }
 
 export function TextReveal({
@@ -19,7 +40,6 @@ export function TextReveal({
 }: TextRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const words = text.split(" ");
-  const Component = motion.create(as as any);
 
   const containerVariants = {
     hidden: {},
@@ -55,7 +75,8 @@ export function TextReveal({
       };
 
   return (
-    <Component
+    <MotionHeadingContainer
+      as={as}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -72,6 +93,6 @@ export function TextReveal({
           </motion.span>
         </span>
       ))}
-    </Component>
+    </MotionHeadingContainer>
   );
 }

@@ -1,28 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { desktopQuery } from "@/lib/motion";
 
+function subscribe(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mq = window.matchMedia(desktopQuery);
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getSnapshot(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia(desktopQuery).matches;
+}
+
+function getServerSnapshot(): boolean {
+  return false;
+}
+
 export function useIsDesktop(): boolean {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia(desktopQuery);
-    setIsDesktop(mq.matches);
-
-    const handler = (e: MediaQueryListEvent) => {
-      setIsDesktop(e.matches);
-    };
-
-    if (mq.addEventListener) {
-      mq.addEventListener("change", handler);
-      return () => mq.removeEventListener("change", handler);
-    } else {
-      mq.addListener(handler);
-      return () => mq.removeListener(handler);
-    }
-  }, []);
-
-  return isDesktop;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

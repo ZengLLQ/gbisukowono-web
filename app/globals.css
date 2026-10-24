@@ -112,6 +112,22 @@
   }
 }
 
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.012);
+    opacity: 0.96;
+  }
+}
+
+.service-day-pulse {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
 /* ========================================================================= */
 
 html {
@@ -228,7 +244,8 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .hero-kenburns,
   .scroll-cue-line,
-  .cta-gradient {
+  .cta-gradient,
+  .service-day-pulse {
     animation: none !important;
   }
   .hero-word > span,
