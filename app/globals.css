@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   DESIGN TOKENS (warna, font, radius, skala tipe)
+   Ganti warna HANYA di blok @theme ini — semua utility Tailwind
+   (bg-ink, text-accent, border-line, …) dan var(--color-*) ikut berubah.
+   Nilai heksadesimal adalah perkiraan (terinspirasi bethel.com).
+   ========================================================================= */
+@theme {
+  --color-ink: #111111; /* heading, section gelap, footer */
+  --color-charcoal: #1e1e1e; /* permukaan gelap, header saat scroll */
+  --color-stone: #6b6b6b; /* teks sekunder */
+  --color-line: #e6e3de; /* border, pemisah */
+  --color-sand: #f6f3ee; /* latar section terang */
+  --color-white: #ffffff;
+  --color-accent: #c8873a; /* tombol utama, highlight */
+  /* CATATAN AKSESIBILITAS: nilai brief #A56A27 hanya 4.47:1 dengan teks putih
+     (gagal AA). Digelapkan sedikit menjadi #9A6222 (5.07:1). */
+  --color-accent-dark: #9a6222; /* hover/pressed (teks putih) */
+  /* Turunan untuk teks berwarna aksen di atas latar terang (link, eyebrow).
+     #C8873A di atas putih hanya 3.0:1, jadi teks kecil memakai versi gelap ini (5.9:1). */
+  --color-accent-text: #8a5a1f;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.5rem; /* 24px */
+  --radius-card-sm: 1rem; /* 16px */
+
+  /* Skala tipe fluid (clamp) */
+  --text-display: clamp(2.5rem, 1.4rem + 5.2vw, 6rem);
+  --text-display--line-height: 0.98;
+  --text-h1: clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem);
+  --text-h1--line-height: 1.02;
+  --text-h2: clamp(1.875rem, 1.35rem + 2.4vw, 3.5rem);
+  --text-h2--line-height: 1.05;
+  --text-h3: clamp(1.375rem, 1.15rem + 1vw, 2rem);
+  --text-h3--line-height: 1.15;
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+
+  --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-ken-burns: ken-burns var(--dur-kenburns, 1.6s) var(--ease-entrance) both;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(var(--scale-kenburns, 1.1));
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--dist-fadeup, 24px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mask-up {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    transform: translate3d(-12%, 0, 0);
+  }
+  50% {
+    transform: translate3d(12%, 0, 0);
+  }
+}
+
+/* ========================================================================= */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Fokus terlihat jelas di semua latar */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* Pengumuman yang sudah ditutup: disembunyikan sebelum paint (lihat script di layout) */
+html[data-ann-dismissed] [data-announcement] {
+  display: none;
+}
+
+/* ---------- Animasi load hero (CSS murni: tetap jalan walau JS gagal) ---------- */
+.hero-kenburns {
+  animation: var(--animate-ken-burns);
+}
+.hero-fade-up {
+  animation: fade-up var(--dur-base) var(--ease-entrance) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger) + 0.5s);
+}
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.hero-word > span {
+  display: inline-block;
+  animation: mask-up var(--dur-slow) var(--ease-entrance) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger) + 0.1s);
+}
+.header-fade-in {
+  animation: fade-in var(--dur-base) var(--ease-entrance) both;
+}
+.announcement-slide {
+  animation: slide-down var(--dur-base) var(--ease-entrance) both;
+}
+.scroll-cue-line {
+  animation: scroll-cue 2.4s var(--ease-ui) infinite;
+}
+.cta-gradient {
+  animation: gradient-shift 18s ease-in-out infinite;
+}
+
+/* Link dengan garis bawah yang tergambar kiri → kanan */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-fast) var(--ease-ui), color var(--dur-fast) var(--ease-ui);
+}
+@media (hover: hover) {
+  .link-draw:hover {
+    background-size: 100% 1px;
+  }
+}
+
+/* Carousel tanpa scrollbar visual (tetap bisa di-scroll & diakses keyboard) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lenis (smooth scroll desktop) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* ---------- prefers-reduced-motion: hanya fade singkat ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns,
+  .scroll-cue-line,
+  .cta-gradient {
+    animation: none !important;
+  }
+  .hero-word > span,
+  .hero-fade-up,
+  .announcement-slide {
+    animation: fade-in var(--dur-reduced) linear both !important;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
