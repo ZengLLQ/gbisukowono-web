@@ -28,7 +28,7 @@ export function KegiatanFilterGrid() {
 
   return (
     <div className="space-y-12">
-      {/* Filter Chips */}
+      {/* Filter Chips in Amperos Pill Style */}
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         {categories.map((cat) => {
           const isActive = selectedCategory === cat;
@@ -42,8 +42,8 @@ export function KegiatanFilterGrid() {
               }}
               className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent ${
                 isActive
-                  ? "bg-accent text-ink shadow-md"
-                  : "bg-sand hover:bg-stone-200 text-stone-700 border border-line"
+                  ? "bg-white text-black shadow-lg scale-[1.02]"
+                  : "bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 border border-white/10"
               }`}
             >
               {cat}
@@ -66,47 +66,47 @@ export function KegiatanFilterGrid() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: duration.accordion, ease: ease.ui }}
-              className="bg-white rounded-3xl overflow-hidden border border-line shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+              className="bento-card bento-shimmer flex flex-col justify-between group shadow-xl"
             >
               <div>
-                <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
+                <div className="relative aspect-[16/10] overflow-hidden bg-black">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-85"
                   />
-                  <div className="absolute top-4 left-4 bg-charcoal/85 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-white uppercase tracking-wider">
+                  <div className="absolute top-4 left-4 bg-[#090B0E]/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono font-medium text-slate-200 uppercase tracking-wider border border-white/10">
                     {item.category}
                   </div>
                 </div>
 
                 <div className="p-6 space-y-3">
-                  <div className="flex items-center gap-2 text-xs font-medium text-stone">
-                    <IconCalendar size={14} className="text-accent-text" />
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <IconCalendar size={13} className="text-accent" />
                     <span>{item.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-display font-bold text-ink group-hover:text-accent-text transition-colors leading-tight">
+                  <h3 className="text-xl font-serif font-normal text-white group-hover:text-accent transition-colors leading-tight">
                     {item.title}
                   </h3>
 
-                  <p className="text-stone text-sm line-clamp-3 leading-relaxed font-sans">
+                  <p className="text-slate-300 text-xs sm:text-sm line-clamp-3 leading-relaxed font-sans font-light">
                     {item.excerpt}
                   </p>
                 </div>
               </div>
 
-              <div className="p-6 pt-0 border-t border-line/60">
+              <div className="p-6 pt-0 border-t border-white/[0.08]">
                 <Link
                   href={`/kegiatan/${item.slug}`}
-                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-accent-text group-hover:underline pt-4"
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-accent hover:text-white transition-colors pt-4"
                 >
                   <span>Lihat Detail Warta</span>
                   <IconArrowRight
-                    size={15}
-                    className="group-hover:translate-x-1 transition-transform"
+                    size={14}
+                    className="group-hover:translate-x-1.5 transition-transform"
                   />
                 </Link>
               </div>
@@ -117,8 +117,8 @@ export function KegiatanFilterGrid() {
 
       {/* Empty State */}
       {displayedItems.length === 0 && (
-        <div className="text-center py-16 bg-sand rounded-3xl border border-line">
-          <p className="text-stone font-medium">
+        <div className="text-center py-16 bento-card border-white/10">
+          <p className="text-slate-400 font-light">
             Belum ada warta kegiatan untuk kategori &ldquo;{selectedCategory}&rdquo;.
           </p>
         </div>
@@ -130,7 +130,7 @@ export function KegiatanFilterGrid() {
           <button
             type="button"
             onClick={handleLoadMore}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-sand hover:bg-stone-200 text-ink font-bold text-sm border border-line transition-all active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] text-white font-medium text-xs sm:text-sm border border-white/15 transition-all active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
           >
             <span>Muat Lebih Banyak Kegiatan</span>
           </button>

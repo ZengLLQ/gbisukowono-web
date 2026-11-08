@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -8,11 +8,12 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { motionCssVariables } from "@/lib/motion";
 import { churchContact } from "@/data/contact";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const playfair = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -23,7 +24,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#111111",
+  themeColor: "#07080a",
   width: "device-width",
   initialScale: 1,
 };
@@ -133,7 +134,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${archivo.variable} ${plusJakartaSans.variable} scroll-smooth`}
+      className={`${playfair.variable} ${plusJakartaSans.variable} scroll-smooth dark`}
     >
       <head>
         <style dangerouslySetInnerHTML={{ __html: motionCssVariables }} />
@@ -142,7 +143,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(churchJsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-ink font-sans selection:bg-accent selection:text-ink antialiased">
+      <body className="min-h-screen flex flex-col bg-[#07080A] text-slate-100 font-sans selection:bg-accent selection:text-black antialiased overflow-x-hidden">
         <SkipToContent />
         <Header />
         <SmoothScroll>

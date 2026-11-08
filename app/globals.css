@@ -1,27 +1,24 @@
 @import "tailwindcss";
 
 /* =========================================================================
-   DESIGN TOKENS (warna, font, radius, skala tipe)
-   Ganti warna HANYA di blok @theme ini — semua utility Tailwind
-   (bg-ink, text-accent, border-line, …) dan var(--color-*) ikut berubah.
-   Nilai heksadesimal adalah perkiraan (terinspirasi bethel.com).
+   DESIGN TOKENS (AMPEROS ULTRA-PREMIUM EDITORIAL DARK AESTHETIC)
    ========================================================================= */
 @theme {
-  --color-ink: #111111; /* heading, section gelap, footer */
-  --color-charcoal: #1e1e1e; /* permukaan gelap, header saat scroll */
-  --color-stone: #6b6b6b; /* teks sekunder */
-  --color-line: #e6e3de; /* border, pemisah */
-  --color-sand: #f6f3ee; /* latar section terang */
+  --color-ink: #07080a; /* base canvas */
+  --color-charcoal: #0e1017; /* elevated dark surface */
+  --color-surface: #141721; /* bento card surface */
+  --color-surface-hover: #1a1e2b;
+  --color-stone: #94a3b8; /* secondary text (slate-400) */
+  --color-line: rgba(255, 255, 255, 0.08); /* precision 1px border */
+  --color-line-bright: rgba(255, 255, 255, 0.16);
+  --color-sand: #0c0e14; /* secondary dark section background */
   --color-white: #ffffff;
-  --color-accent: #c8873a; /* tombol utama, highlight */
-  /* CATATAN AKSESIBILITAS: nilai brief #A56A27 hanya 4.47:1 dengan teks putih
-     (gagal AA). Digelapkan sedikit menjadi #9A6222 (5.07:1). */
-  --color-accent-dark: #9a6222; /* hover/pressed (teks putih) */
-  /* Turunan untuk teks berwarna aksen di atas latar terang (link, eyebrow).
-     #C8873A di atas putih hanya 3.0:1, jadi teks kecil memakai versi gelap ini (5.9:1). */
-  --color-accent-text: #8a5a1f;
+  --color-accent: #e5a93c; /* champagne radiant gold */
+  --color-accent-dark: #c8873a; /* hover/pressed */
+  --color-accent-text: #f3ba5f; /* bright gold text */
+  --color-accent-glow: rgba(229, 169, 60, 0.18);
 
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-serif), Georgia, serif;
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1.5rem; /* 24px */
@@ -33,7 +30,7 @@
   --text-h1: clamp(2.25rem, 1.5rem + 3.6vw, 4.5rem);
   --text-h1--line-height: 1.02;
   --text-h2: clamp(1.875rem, 1.35rem + 2.4vw, 3.5rem);
-  --text-h2--line-height: 1.05;
+  --text-h2--line-height: 1.08;
   --text-h3: clamp(1.375rem, 1.15rem + 1vw, 2rem);
   --text-h3--line-height: 1.15;
   --text-lead: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
@@ -137,8 +134,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-ink);
-  background: var(--color-white);
+  color: #f1f5f9;
+  background: #07080a;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -154,6 +151,36 @@ h3,
 
 p {
   text-wrap: pretty;
+}
+
+/* Amperos Bento Card Utilities */
+.bento-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+.bento-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  pointer-events: none;
 }
 
 /* Fokus terlihat jelas di semua latar */

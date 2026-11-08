@@ -27,13 +27,13 @@ ${message}`;
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-sand rounded-3xl p-8 sm:p-10 border border-line shadow-sm space-y-6"
+      className="bento-card bento-shimmer bg-white/[0.03] rounded-2xl p-8 sm:p-10 border border-white/10 shadow-2xl space-y-6"
     >
       <div>
-        <h3 className="text-2xl font-display font-bold text-ink mb-1">
+        <h3 className="text-2xl sm:text-3xl font-serif font-normal text-white mb-2">
           Kirim Pesan ke WhatsApp Sekretariat
         </h3>
-        <p className="text-stone text-xs sm:text-sm">
+        <p className="text-slate-400 text-xs sm:text-sm">
           Isi formulir singkat ini untuk langsung terhubung ke admin sekretariat
           GBI Sukowono via WhatsApp.
         </p>
@@ -43,7 +43,7 @@ ${message}`;
         <div>
           <label
             htmlFor="contact-name"
-            className="block text-xs font-bold uppercase tracking-wider text-ink mb-2"
+            className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 mb-2"
           >
             Nama Lengkap
           </label>
@@ -54,14 +54,14 @@ ${message}`;
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Masukkan nama Anda..."
-            className="w-full px-4 py-3 rounded-xl border border-line bg-white text-ink text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/[0.04] text-white placeholder:text-slate-500 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
           />
         </div>
 
         <div>
           <label
             htmlFor="contact-category"
-            className="block text-xs font-bold uppercase tracking-wider text-ink mb-2"
+            className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 mb-2"
           >
             Keperluan Pesan
           </label>
@@ -69,7 +69,7 @@ ${message}`;
             id="contact-category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-line bg-white text-ink text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 bg-[#0E1017] text-white text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
           >
             <option value="Pertanyaan Umum Seputar Ibadah">
               Pertanyaan Umum Seputar Ibadah
@@ -90,7 +90,7 @@ ${message}`;
         <div>
           <label
             htmlFor="contact-message"
-            className="block text-xs font-bold uppercase tracking-wider text-ink mb-2"
+            className="block text-[11px] font-mono uppercase tracking-wider text-slate-300 mb-2"
           >
             Isi Pesan
           </label>
@@ -101,20 +101,20 @@ ${message}`;
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Tuliskan pertanyaan atau permohonan doa Anda di sini..."
-            className="w-full px-4 py-3 rounded-xl border border-line bg-white text-ink text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/[0.04] text-white placeholder:text-slate-500 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
           />
         </div>
       </div>
 
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-accent hover:bg-accent-dark text-ink font-bold text-sm shadow-md transition-all active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+        className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-accent hover:bg-accent-dark text-[#07080A] font-bold text-sm shadow-[0_0_25px_rgba(229,169,60,0.3)] transition-all active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
       >
         <IconWhatsApp size={18} />
         <span>Kirim via WhatsApp (0812-1740-7046)</span>
       </button>
 
-      <p className="text-[11px] text-stone text-center italic">
+      <p className="text-[11px] text-slate-500 text-center italic">
         *Formulir ini tidak memerlukan login dan akan membuka aplikasi WhatsApp Anda secara aman.
       </p>
     </form>

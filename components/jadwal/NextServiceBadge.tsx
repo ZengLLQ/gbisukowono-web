@@ -102,8 +102,8 @@ export function NextServiceBadge() {
 
   if (!nextService) {
     return (
-      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/40 text-accent font-semibold text-xs sm:text-sm">
-        <IconClock size={16} />
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-accent font-medium text-xs sm:text-sm backdrop-blur-md">
+        <IconClock size={15} />
         <span>Ibadah Raya Minggu • 18.00 WIB</span>
       </div>
     );
@@ -117,13 +117,13 @@ export function NextServiceBadge() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -6 }}
         transition={{ duration: duration.fast, ease: ease.ui }}
-        className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-accent/20 border border-accent/40 text-white font-medium text-xs sm:text-sm shadow-md"
+        className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/[0.04] border border-white/10 text-white font-medium text-xs sm:text-sm shadow-xl backdrop-blur-xl"
       >
         <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-        <span className="text-accent font-bold uppercase tracking-wider text-[11px]">
+        <span className="text-accent font-mono font-bold uppercase tracking-wider text-[11px]">
           Ibadah Berikutnya:
         </span>
-        <span className="text-sand font-semibold">
+        <span className="text-slate-200 font-medium">
           {nextService.name} ({nextService.dayText}, {nextService.timeText})
         </span>
       </motion.div>

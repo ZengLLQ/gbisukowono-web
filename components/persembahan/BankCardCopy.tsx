@@ -80,17 +80,17 @@ export function BankCardCopy() {
         )}
       </AnimatePresence>
 
-      {/* Bank Card with soft entrance animation */}
+      {/* Bank Card with soft entrance animation in Amperos Metallic Obsidian Style */}
       <motion.div
         initial={{ opacity: 0, scale: scale.bankCardFrom }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: duration.base, ease: ease.entrance }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-charcoal via-ink to-black text-white p-8 sm:p-10 border border-white/15 shadow-2xl"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#131622] via-[#0B0D12] to-black text-white p-8 sm:p-10 border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.8)] bento-shimmer"
       >
-        {/* Subtle decorative watermark */}
+        {/* Subtle decorative watermark & ambient glow */}
         <div
-          className="absolute -right-10 -bottom-10 w-60 h-60 bg-accent/10 rounded-full blur-3xl pointer-events-none"
+          className="absolute -right-10 -bottom-10 w-72 h-72 bg-accent/15 rounded-full blur-3xl pointer-events-none"
           aria-hidden="true"
         />
 
@@ -98,18 +98,18 @@ export function BankCardCopy() {
           {/* Top Row: Bank Badge & Security Indicator */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-white text-ink flex items-center justify-center font-display font-extrabold text-lg tracking-wider shadow-md">
+              <div className="w-12 h-12 rounded-2xl bg-white text-black flex items-center justify-center font-display font-extrabold text-lg tracking-wider shadow-md">
                 BCA
               </div>
               <div>
-                <p className="font-display font-bold text-lg leading-tight">
+                <p className="font-display font-medium text-lg leading-tight text-white">
                   {bankDetails.bankName}
                 </p>
-                <p className="text-xs text-sand/70">{bankDetails.branch}</p>
+                <p className="text-xs text-slate-400 font-mono">{bankDetails.branch}</p>
               </div>
             </div>
 
-            <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-accent bg-accent/15 px-3 py-1 rounded-full border border-accent/30 font-semibold">
+            <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-accent bg-accent/15 px-3.5 py-1 rounded-full border border-accent/30 font-mono font-medium">
               <IconShield size={14} />
               <span>Rekening Resmi Gereja</span>
             </div>
@@ -117,11 +117,11 @@ export function BankCardCopy() {
 
           {/* Middle: Account Number & Copy Button */}
           <div className="space-y-3">
-            <span className="text-[11px] uppercase tracking-wider text-sand/70 font-semibold block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-mono block">
               Nomor Rekening BCA:
             </span>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/5 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-black/50 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/10">
               <div className="font-mono text-2xl sm:text-3xl md:text-4xl font-bold tracking-widest text-white select-all">
                 334 338 0000
               </div>
@@ -130,10 +130,10 @@ export function BankCardCopy() {
                 type="button"
                 onClick={handleCopy}
                 aria-label="Salin Nomor Rekening BCA 334 338 0000"
-                className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold transition-all active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent shadow-md shrink-0 ${
+                className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent shadow-lg shrink-0 ${
                   copied
-                    ? "bg-green-600 text-white"
-                    : "bg-accent hover:bg-accent-dark text-ink"
+                    ? "bg-emerald-500 text-white"
+                    : "bg-white hover:bg-neutral-200 text-black shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 }`}
               >
                 {copied ? (
@@ -152,14 +152,14 @@ export function BankCardCopy() {
           </div>
 
           {/* Bottom: Account Holder Name (Placeholder Notice) */}
-          <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-sand/80">
+          <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-300 font-mono">
             <div>
-              <span className="text-sand/60 block text-[11px]">Atas Nama Rekening:</span>
-              <span className="font-semibold text-sand">
+              <span className="text-slate-400 block text-[11px]">Atas Nama Rekening:</span>
+              <span className="font-semibold text-slate-100">
                 {bankDetails.accountName}
               </span>
             </div>
-            <div className="text-[11px] text-amber-300/90 italic">
+            <div className="text-[11px] text-accent italic">
               *Konfirmasi nama rekening kepada sekretariat gereja sebelum transfer.
             </div>
           </div>

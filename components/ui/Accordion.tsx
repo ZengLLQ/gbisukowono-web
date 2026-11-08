@@ -33,7 +33,7 @@ export function Accordion({ items, className = "" }: AccordionProps) {
         return (
           <div
             key={item.id}
-            className="rounded-2xl border border-line bg-sand/50 overflow-hidden transition-colors hover:border-accent/40"
+            className="rounded-2xl border border-white/[0.08] bg-white/[0.025] backdrop-blur-md overflow-hidden transition-all hover:border-white/20 bento-shimmer relative"
           >
             <h3>
               <button
@@ -42,15 +42,15 @@ export function Accordion({ items, className = "" }: AccordionProps) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(item.id)}
-                className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left font-display font-bold text-base sm:text-lg text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left font-display font-medium text-base sm:text-lg text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
               >
                 <span>{item.question}</span>
                 <motion.span
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: duration.accordion, ease: ease.ui }}
-                  className="text-stone shrink-0"
+                  className="text-accent shrink-0"
                 >
-                  <IconChevronDown size={20} />
+                  <IconChevronDown size={18} />
                 </motion.span>
               </button>
             </h3>
@@ -67,7 +67,7 @@ export function Accordion({ items, className = "" }: AccordionProps) {
                   transition={{ duration: duration.accordion, ease: ease.ui }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-6 pt-1 text-stone text-sm sm:text-base leading-relaxed font-sans border-t border-line/50">
+                  <div className="px-6 pb-6 pt-2 text-slate-300 text-sm sm:text-base leading-relaxed font-sans font-light border-t border-white/[0.06]">
                     {item.answer}
                   </div>
                 </motion.div>

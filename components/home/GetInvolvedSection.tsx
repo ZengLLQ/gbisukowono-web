@@ -47,21 +47,22 @@ export function GetInvolvedSection() {
   return (
     <section
       aria-labelledby="get-involved-heading"
-      className="py-24 sm:py-32 bg-white text-ink border-t border-line"
+      className="py-24 sm:py-32 bg-[#090B0E] text-white border-t border-white/[0.06] relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <Reveal>
-            <span className="text-xs uppercase tracking-widest text-accent-text font-bold mb-3 block">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono tracking-widest uppercase text-accent mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               LANGKAH SELANJUTNYA
             </span>
             <h2
               id="get-involved-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-ink mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal tracking-tight text-white mb-5"
             >
               Cara Terlibat
             </h2>
-            <p className="text-stone text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
               Gereja adalah tubuh yang hidup. Ada tempat bagi Anda untuk melayani,
               menemukan sahabat seiman, dan bertumbuh bersama.
             </p>
@@ -69,35 +70,41 @@ export function GetInvolvedSection() {
         </div>
 
         <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {involvedSteps.map((step) => {
+          {involvedSteps.map((step, idx) => {
+            const stepNum = `0${idx + 1}`;
+
             return (
               <RevealStaggerItem key={step.id}>
-                <div className="group h-full bg-sand rounded-2xl overflow-hidden border border-line shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                <div className="group h-full bento-card bento-shimmer flex flex-col justify-between shadow-xl">
                   <div>
-                    {/* Image */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
+                    {/* Image with subtle step number badge */}
+                    <div className="relative aspect-[16/10] overflow-hidden bg-black">
                       <Image
                         src={step.image}
                         alt={step.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-85"
                       />
                       <div
-                        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                        className="absolute inset-0 bg-gradient-to-t from-[#090B0E] via-black/30 to-transparent"
                         aria-hidden="true"
                       />
+                      {/* Step Number in Amperos Monospace Style */}
+                      <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-mono font-bold text-accent">
+                        {stepNum}
+                      </div>
                     </div>
 
                     {/* Content */}
                     <div className="p-6 space-y-3">
-                      <h3 className="text-2xl font-display font-bold text-ink group-hover:text-accent-text transition-colors">
+                      <h3 className="text-xl sm:text-2xl font-serif font-normal text-white group-hover:text-accent transition-colors">
                         {step.title}
                       </h3>
-                      <p className="text-xs font-semibold text-accent-text uppercase tracking-wide">
+                      <p className="text-xs font-mono font-medium text-accent uppercase tracking-wider">
                         {step.tagline}
                       </p>
-                      <p className="text-stone text-sm leading-relaxed font-sans pt-1">
+                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans font-light pt-1">
                         {step.description}
                       </p>
                     </div>
@@ -109,24 +116,24 @@ export function GetInvolvedSection() {
                         href={step.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-bold text-accent-text hover:text-accent-dark transition-colors"
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-white/[0.04] hover:bg-white text-slate-200 hover:text-black text-xs font-semibold border border-white/10 transition-all duration-300 active:scale-95"
                       >
-                        <IconWhatsApp size={16} />
+                        <IconWhatsApp size={15} />
                         <span>{step.linkText}</span>
                         <IconArrowRight
-                          size={15}
-                          className="transform group-hover:translate-x-1.5 transition-transform"
+                          size={13}
+                          className="transform group-hover:translate-x-1 transition-transform"
                         />
                       </a>
                     ) : (
                       <Link
                         href={step.href}
-                        className="inline-flex items-center gap-2 text-sm font-bold text-accent-text hover:text-accent-dark transition-colors"
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-white/[0.04] hover:bg-white text-slate-200 hover:text-black text-xs font-semibold border border-white/10 transition-all duration-300 active:scale-95"
                       >
                         <span>{step.linkText}</span>
                         <IconArrowRight
-                          size={15}
-                          className="transform group-hover:translate-x-1.5 transition-transform"
+                          size={13}
+                          className="transform group-hover:translate-x-1 transition-transform"
                         />
                       </Link>
                     )}

@@ -51,47 +51,53 @@ export default async function DetailKegiatanPage({ params }: PageProps) {
 
   return (
     <>
-      <article className="pt-32 pb-24 bg-white text-ink min-h-screen">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article className="pt-36 sm:pt-44 pb-24 bg-[#07080A] text-slate-100 min-h-screen relative overflow-hidden">
+        {/* Ambient Top Glow Cone */}
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[380px] bg-[radial-gradient(ellipse_at_top,rgba(229,169,60,0.12),transparent_70%)] pointer-events-none z-0"
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb / Back Link */}
           <div className="mb-8">
             <Link
               href="/kegiatan"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-accent-text hover:text-accent-dark transition-colors py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-accent hover:text-white transition-colors py-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
             >
               <span>← Kembali ke Semua Warta & Kegiatan</span>
             </Link>
           </div>
 
           {/* Header */}
-          <header className="space-y-4 mb-8">
+          <header className="space-y-4 mb-10">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-white/10 text-slate-200 border border-white/15 text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full">
                 {item.category}
               </span>
-              <span className="text-xs text-stone flex items-center gap-1 font-medium">
-                <IconCalendar size={14} className="text-accent-text" />
+              <span className="text-xs text-slate-400 flex items-center gap-1.5 font-medium">
+                <IconCalendar size={14} className="text-accent" />
                 <span>{item.date}</span>
               </span>
               {item.time && (
-                <span className="text-xs text-stone">• {item.time}</span>
+                <span className="text-xs text-slate-400">• {item.time}</span>
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-ink leading-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-normal tracking-tight text-white leading-tight">
               {item.title}
             </h1>
 
             {item.location && (
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-stone pt-1">
-                <IconMapPin size={16} className="text-accent-text shrink-0" />
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 pt-1">
+                <IconMapPin size={16} className="text-accent shrink-0" />
                 <span>{item.location}</span>
               </div>
             )}
           </header>
 
           {/* Featured Image */}
-          <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl bg-charcoal mb-12">
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#0E1017] mb-12">
             <Image
               src={item.image}
               alt={item.title}
@@ -103,17 +109,17 @@ export default async function DetailKegiatanPage({ params }: PageProps) {
           </div>
 
           {/* Body Content */}
-          <div className="prose prose-stone max-w-none text-base sm:text-lg leading-relaxed space-y-6 text-stone-800 font-sans border-b border-line pb-12 mb-12 whitespace-pre-line">
+          <div className="text-base sm:text-lg leading-relaxed space-y-6 text-slate-300 font-sans border-b border-white/10 pb-12 mb-12 whitespace-pre-line">
             {item.content}
           </div>
 
           {/* Share / WhatsApp Action Card */}
-          <div className="bg-sand rounded-3xl p-8 border border-line flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="bento-card bento-shimmer bg-white/[0.03] border border-white/10 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <h2 className="font-display font-bold text-xl text-ink">
+              <h2 className="font-serif font-normal text-xl sm:text-2xl text-white">
                 Ada Pertanyaan Seputar Kegiatan Ini?
               </h2>
-              <p className="text-stone text-xs sm:text-sm mt-1">
+              <p className="text-slate-400 text-xs sm:text-sm mt-1">
                 Sekretariat GBI Sukowono siap membantu Anda melalui pesan WhatsApp.
               </p>
             </div>
@@ -125,7 +131,7 @@ export default async function DetailKegiatanPage({ params }: PageProps) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent hover:bg-accent-dark text-ink font-bold text-sm shadow-md transition-all active:scale-[0.98] shrink-0"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent hover:bg-accent-dark text-[#07080A] font-bold text-sm shadow-[0_0_20px_rgba(229,169,60,0.3)] transition-all active:scale-[0.98] shrink-0"
               >
                 <IconWhatsApp size={16} />
                 <span>Tanya via WhatsApp</span>

@@ -9,10 +9,10 @@ export function WeeklyTimeline() {
   return (
     <div className="w-full">
       <div className="text-center mb-8">
-        <h3 className="text-xl sm:text-2xl font-display font-bold text-ink">
+        <h3 className="text-xl sm:text-2xl font-display font-medium text-white">
           Garis Waktu Mingguan (Senin – Minggu)
         </h3>
-        <p className="text-stone text-xs sm:text-sm mt-1">
+        <p className="text-slate-400 text-xs sm:text-sm mt-1 font-light">
           Hari ibadah ditandai dengan aksen emas; hari tanpa ibadah tertutup untuk
           kegiatan umum.
         </p>
@@ -25,19 +25,19 @@ export function WeeklyTimeline() {
               <div
                 className={`h-full rounded-2xl p-4 sm:p-5 border transition-all flex flex-col justify-between ${
                   item.hasService
-                    ? "bg-white border-accent/50 shadow-md ring-1 ring-accent/20 service-day-pulse"
-                    : "bg-sand/60 border-line/70 opacity-60"
+                    ? "bento-card bento-shimmer bg-white/[0.05] border-accent/40 shadow-xl service-day-pulse"
+                    : "bg-white/[0.015] border-white/[0.05] opacity-50"
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-display font-bold text-base sm:text-lg text-ink">
+                    <span className="font-display font-medium text-base sm:text-lg text-white">
                       {item.dayName}
                     </span>
                     {item.hasService ? (
-                      <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                     ) : (
-                      <span className="text-[10px] text-stone uppercase tracking-wider font-semibold">
+                      <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider font-semibold">
                         Tutup
                       </span>
                     )}
@@ -45,24 +45,24 @@ export function WeeklyTimeline() {
 
                   {item.hasService ? (
                     <div className="space-y-1">
-                      <p className="font-bold text-xs sm:text-sm text-ink leading-tight">
+                      <p className="font-medium text-xs sm:text-sm text-slate-100 leading-tight">
                         {item.serviceTitle}
                       </p>
-                      <div className="inline-flex items-center gap-1 text-[11px] text-accent-text font-semibold">
+                      <div className="inline-flex items-center gap-1 text-[11px] font-mono text-accent font-semibold">
                         <IconClock size={12} />
                         <span>{item.time}</span>
                       </div>
                     </div>
                   ) : (
-                    <p className="text-[11px] text-stone italic">
+                    <p className="text-[11px] text-slate-500 italic font-light">
                       Tidak ada ibadah umum
                     </p>
                   )}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-line/40 text-[10px] text-stone">
+                <div className="mt-4 pt-3 border-t border-white/[0.08] text-[10px] text-slate-400 font-mono">
                   {item.hasService ? (
-                    <span className="text-accent-text font-bold">Terbuka untuk Jemaat</span>
+                    <span className="text-accent font-semibold">Terbuka untuk Jemaat</span>
                   ) : (
                     <span>Tutup kecuali Hari Raya</span>
                   )}
